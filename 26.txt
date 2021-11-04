@@ -1,0 +1,25 @@
+给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。
+不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
+
+func removeDuplicates(nums []int) int {
+        var k int = 0
+        if len(nums) == 0{ //空数组直接返回0
+                return 0
+        }
+        for index,data := range nums{ //遍历非空数组
+        if index == 0{ //第一个元素一定是结果数组的元素
+            nums[k] = data
+            k = k + 1
+            continue
+        }
+        if nums[index] == nums[index - 1]{ //快指针指向下一个非重复元素
+            continue
+        }else{
+            nums[k] = data
+            k = k + 1
+        }
+    }
+    return k
+}
+
+快慢指针
