@@ -1,0 +1,18 @@
+268. 丢失的数字
+
+给定一个包含 [0, n] 中 n 个数的数组 nums ，找出 [0, n] 这个范围内没有出现在数组中的那个数。
+
+func missingNumber(nums []int) int {
+        n := len(nums)
+    for i := 0;i <= n;i++{
+        nums = append(nums,i) //将0-n每个数字加入到切片中,准备做异或操作
+    }
+    p := len(nums) //异或次数上限
+    var ans int = nums[0]
+    for i := 1;i < p;i++{
+        ans = nums[i] ^ ans //两两异或
+    }
+    return ans //两个相同的数异或结果为零，0与任何数异或均为该数本身，缺失的数只有一个，结果即为缺失的数
+}
+
+位运算
